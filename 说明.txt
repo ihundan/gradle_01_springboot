@@ -1,0 +1,5 @@
+spring boot : 内置了tomcat,可以直接通过main来运行
+	1、配置环境及jar包(build.gradle)
+	2、编写controller(和正常的controller一样)
+	3、编写启动类（使用三个annotation注解，main方法中执行固定方法）
+	注意：此时如果是直接给页面返回数据是可以运行的，但是如果是返回到某个页面，则需要配置mvc前后缀

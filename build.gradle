@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+    }
+}
+
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+jar {
+    destinationDir file('publish')
+}
+war {
+    destinationDir file('publish')
+}
+
+targetCompatibility = 1.7
+sourceCompatibility = 1.7
+
+//\u9879\u76ee\u9700\u8981\u7684\u4f9d\u8d56
+repositories {
+  	mavenCentral()
+  	// \u81ea\u5b9a\u4e49\u5e93\u5730\u5740
+	//maven { url 'http://localhost:8081/nexus/content/groups/public' }
+}
+// \u8bbe\u7f6e\u4f9d\u8d56
+dependencies {
+    compile fileTree(dir: 'lib', include: '*.jar')
+    compile "org.springframework.boot:spring-boot-starter-web"
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+
+    runtime "javax.servlet:jstl:1.2"
+    runtime "org.springframework.boot:spring-boot-starter-tomcat"
+    runtime "org.apache.tomcat.embed:tomcat-embed-jasper"
+}
+
+[compileJava,compileTestJava]*.options*.encoding = 'UTF-8'
